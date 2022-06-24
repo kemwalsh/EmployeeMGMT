@@ -7,15 +7,15 @@ VALUES  ("Sales"),
         ("Finance"),
         ("Legal");
 
--- Seed data for position table
-INSERT INTO position (title, salary, department_id)
+-- Seed data for role table
+INSERT INTO role (title, salary, department_id)
 VALUES  ("Salesperson", 65000.00, 1),
         ("Engineer", 120000.00, 2),
         ("Bookkeeper", 80000.00, 3),
         ("Lawyer", 110000.00, 4);
 
 -- Seed data for employee table
-INSERT INTO employee (first_name, last_name, position_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES  ("Mike", "Frank", 1, NULL),
         ("Lori", "Michael", 1, 1),
         ("Betty", "Smith", 2, NULL),

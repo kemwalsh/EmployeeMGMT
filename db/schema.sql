@@ -12,25 +12,33 @@ CREATE TABLE department (
   department_name VARCHAR(30)
 );
 
--- Creates the table "position" within employee_db --
-CREATE TABLE position (
+-- Creates the table "role" within employee_db --
+CREATE TABLE role (
   id INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(30),
   salary DECIMAL(8,2),
   department_id INT,
+  CONSTRAINT fk_department
   FOREIGN KEY (department_id)
   REFERENCES department(id)
   ON DELETE SET NULL
 );
 
--- Creates the table "employee" within employee_db --
+-- -- Creates the table "employee" within employee_db --
 CREATE TABLE employee (
   id INT AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30),
   last_name VARCHAR(30),
-  position_id INT,
+  role_id INT,
+  INDEX role_ind (role_id),
+  CONSTRAINT fk_role
+  FOREIGN KEY (role_id)
+  REFERENCES role(id)
+  ON DELETE CASCADE,
   manager_id INT,
-  FOREIGN KEY (position_id)
-  REFERENCES position(id)
+  INDEX dep_ind (manager_id),
+  CONSTRAINT fk_manager
+  FOREIGN KEY (manager_id)
+  REFERENCES employee(id)
   ON DELETE SET NULL
 );
