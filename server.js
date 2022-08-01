@@ -1,52 +1,50 @@
 // Import and require inquirer, mysql2, and console.table
-const inquirer = require('inquirer');
-const cTable = require('console.table');
-const mysql = require('mysql2');
+const inquirer = require("inquirer");
+const cTable = require("console.table");
+const mysql = require("mysql2");
 
 // Connect to database
 const db = mysql.createConnection(
-    {
-    host: 'localhost',
+  {
+    host: "localhost",
     // MySQL username,
-    user: 'root',
+    user: "root",
     // MySQL password
-    password: '',
-    database: 'employee_db'
-    },
-    console.log(`Connected to the employee_db database.`)
+    password: "",
+    database: "employee_db",
+  },
+  console.log(`Connected to the employee_db database.`)
 );
 
 let departmentArray = [];
 db.query("SELECT * from department", (err, result) => {
-    if (err) {
-        console.log(err);
-        }
-        for (let res of result) {
-            departmentArray.push(res)
-        }
+  if (err) {
+    console.log(err);
+  }
+  for (let res of result) {
+    departmentArray.push(res);
+  }
 });
 
 let roleArray = [];
 db.query("SELECT * from role", (err, result) => {
-    if (err) {
-        console.log(err);
-        }
-        for (let res of result) {
-            roleArray.push(res.title)
-        }
+  if (err) {
+    console.log(err);
+  }
+  for (let res of result) {
+    roleArray.push(res.title);
+  }
 });
 
 let employeeArray = [];
 db.query("SELECT * from employee", (err, result) => {
-    if (err) {
-        console.log(err);
-        }
-        for (let res of result) {
-            employeeArray.push(res)
-        }
+  if (err) {
+    console.log(err);
+  }
+  for (let res of result) {
+    employeeArray.push(res);
+  }
 });
-
-
 
 // Array of prompts for Readme Generator
 // const prompt = () => {
@@ -115,6 +113,6 @@ db.query("SELECT * from employee", (err, result) => {
 //             type: 'input',
 //             message: 'What is the name of the employee?',
 //         },
-        
+
 //     ])
 //     }
